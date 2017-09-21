@@ -22,6 +22,7 @@
 #import "JSQMessagesCollectionViewDataSource.h"
 #import "JSQMessagesCollectionViewFlowLayout.h"
 #import "JSQMessageData.h"
+#import "JSQMessageAttributedData.h"
 
 #import "UIImage+JSQMessages.h"
 
@@ -116,11 +117,34 @@
         CGFloat horizontalInsetsTotal = horizontalContainerInsets + horizontalFrameInsets + spacingBetweenAvatarAndBubble;
         CGFloat maximumTextWidth = [self textBubbleWidthForLayout:layout] - avatarSize.width - layout.messageBubbleLeftRightMargin - horizontalInsetsTotal;
 
-        CGRect stringRect = [[messageData text] boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
-                                                             options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                                          attributes:@{ NSFontAttributeName : layout.messageBubbleFont }
-                                                             context:nil];
+        
+        //CGRect stringRect = [[messageData text] boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
+        //                                                     options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+        //                                                  attributes:@{ NSFontAttributeName : layout.messageBubbleFont }
+        //                                                     context:nil];
 
+        
+        CGRect stringRect;
+        
+        if ([messageData conformsToProtocol:@protocol(JSQMessageAttributedData)]) {
+            id <JSQMessageAttributedData> attributedMessageItem =  (id <JSQMessageAttributedData> )messageData;
+            stringRect = [[attributedMessageItem  attributedText] boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
+                                                                               options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                                                               context:nil];
+            
+            NSLog(@"WAPX: calculating size for attributed data: %f, %f", CGRectIntegral(stringRect).size.width, CGRectIntegral(stringRect).size.height);
+            
+        } else {
+            
+            stringRect = [[messageData text] boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
+                                                          options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                                       attributes:@{ NSFontAttributeName : layout.messageBubbleFont }
+                                                          context:nil];
+            
+            NSLog(@"WAPX: calculating size for normal data: %f, %f", CGRectIntegral(stringRect).size.width, CGRectIntegral(stringRect).size.height);
+        }
+        
+        
         CGSize stringSize = CGRectIntegral(stringRect).size;
 
         CGFloat verticalContainerInsets = layout.messageBubbleTextViewTextContainerInsets.top + layout.messageBubbleTextViewTextContainerInsets.bottom;
