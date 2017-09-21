@@ -235,6 +235,7 @@
 		B05ACBD81F73E22600CDCB31 /* JSQAttributedMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSQAttributedMessage.h; sourceTree = "<group>"; };
 		B05ACBD91F73E25100CDCB31 /* JSQAttributedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQAttributedMessage.m; sourceTree = "<group>"; };
 		B05ACBDB1F73E28100CDCB31 /* JSQMessageAttributedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSQMessageAttributedData.h; sourceTree = "<group>"; };
+		B05ACBDC1F7414A200CDCB31 /* JSQMessagesViewAccessoryButtonDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSQMessagesViewAccessoryButtonDelegate.h; sourceTree = "<group>"; };
 		C476E2E8B3A5161F04E8DB6B /* libPods-JSQMessages.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSQMessages.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -460,6 +461,7 @@
 				B05ACBD81F73E22600CDCB31 /* JSQAttributedMessage.h */,
 				B05ACBD91F73E25100CDCB31 /* JSQAttributedMessage.m */,
 				B05ACBDB1F73E28100CDCB31 /* JSQMessageAttributedData.h */,
+				B05ACBDC1F7414A200CDCB31 /* JSQMessagesViewAccessoryButtonDelegate.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
