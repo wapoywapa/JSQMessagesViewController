@@ -24,6 +24,7 @@
 #import "JSQMessagesCollectionViewFlowLayout.h"
 
 #import "JSQMessageData.h"
+#import "JSQAttributedMessage.h"
 
 #import "JSQMessagesCollectionView.h"
 #import "JSQMessagesCollectionViewCell.h"
