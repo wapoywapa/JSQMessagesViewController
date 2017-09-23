@@ -17,6 +17,11 @@
 //
 
 #import "DemoMessagesViewController.h"
+#import "JSQMessagesViewAccessoryButtonDelegate.h"
+
+@interface DemoMessagesViewController () <JSQMessagesViewAccessoryButtonDelegate>
+@end
+
 
 @implementation DemoMessagesViewController
 
@@ -49,6 +54,12 @@
      *  Load up our fake data for the demo
      */
     self.demoData = [[DemoModelData alloc] init];
+    
+    
+    /**
+     *  Set up message accessory button delegate and configuration
+     */
+    self.collectionView.accessoryDelegate = self;
     
     
     /**
@@ -557,9 +568,15 @@
                                               NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
     }
     
+    cell.accessoryButton.hidden = ![self shouldShowAccessoryButtonForMessage:msg];
+    
     return cell;
 }
 
+- (BOOL)shouldShowAccessoryButtonForMessage:(id<JSQMessageData>)message
+{
+    return ([message isMediaMessage] && [NSUserDefaults accessoryButtonForMediaMessages]);
+}
 
 
 #pragma mark - UICollectionView Delegate
@@ -673,6 +690,11 @@
     NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
 }
 
+- (void)messagesCollectionViewCellDidTapAccessoryButton:(JSQMessagesCollectionViewCell *)cell
+{
+    NSLog(@"Tapped accessory button");
+}
+
 #pragma mark - JSQMessagesComposerTextViewPasteDelegate methods
 
 
@@ -690,6 +712,13 @@
         return NO;
     }
     return YES;
+}
+
+#pragma mark - JSQMessagesViewAccessoryDelegate methods
+
+- (void)messageView:(JSQMessagesCollectionView *)view didTapAccessoryButtonAtIndexPath:(NSIndexPath *)path
+{
+    NSLog(@"Tapped accessory button!");
 }
 
 @end

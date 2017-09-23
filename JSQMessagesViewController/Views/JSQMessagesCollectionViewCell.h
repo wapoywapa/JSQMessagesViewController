@@ -166,6 +166,9 @@
  */
 @property (weak, nonatomic, readonly, nullable) UIButton *accessoryButton;
 
+@property (strong, nonatomic) UIView *tapFixOverlayView;
+
+
 /**
  *  Sets an image for the accessory button of the cell.
  */

@@ -132,16 +132,12 @@
                                                                                options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                                                                context:nil];
             
-            NSLog(@"WAPX: calculating size for attributed data: %f, %f", CGRectIntegral(stringRect).size.width, CGRectIntegral(stringRect).size.height);
-            
         } else {
             
             stringRect = [[messageData text] boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
                                                           options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                                        attributes:@{ NSFontAttributeName : layout.messageBubbleFont }
                                                           context:nil];
-            
-            NSLog(@"WAPX: calculating size for normal data: %f, %f", CGRectIntegral(stringRect).size.width, CGRectIntegral(stringRect).size.height);
         }
         
         

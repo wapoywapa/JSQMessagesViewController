@@ -95,6 +95,11 @@
     return self.hash;
 }
 
+- (BOOL)isButton {
+    return YES;
+}
+
+
 #pragma mark - NSObject
 
 - (BOOL)isEqual:(id)object

@@ -571,7 +571,16 @@ JSQMessagesKeyboardControllerDelegate>
             cell.textView.attributedText = [attributedMessageItem attributedText];
             
         } else {
-            
+
+            if (messageItem.isButton)
+            {
+                cell.tapFixOverlayView.hidden = NO;
+            }
+            else
+            {
+                cell.tapFixOverlayView.hidden = YES;
+            }
+
             cell.textView.text = [messageItem text];
             
             if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {

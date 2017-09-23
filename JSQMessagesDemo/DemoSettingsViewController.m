@@ -36,6 +36,7 @@
     self.extraMessagesSwitch.on = [NSUserDefaults extraMessagesSetting];
     self.longMessageSwitch.on = [NSUserDefaults longMessageSetting];
     self.emptySwitch.on = [NSUserDefaults emptyMessagesSetting];
+    self.accessoryButtonSwitch.on = [NSUserDefaults accessoryButtonForMediaMessages];
     
     self.incomingAvatarsSwitch.on = [NSUserDefaults incomingAvatarSetting];
     self.outgoingAvatarsSwitch.on = [NSUserDefaults outgoingAvatarSetting];
@@ -55,6 +56,9 @@
     else if (sender == self.emptySwitch) {
         [NSUserDefaults saveEmptyMessagesSetting:sender.on];
     }
+    else if (sender == self.accessoryButtonSwitch) {
+        [NSUserDefaults saveAccessoryButtonForMediaMessages:sender.on];
+    }
     else if (sender == self.incomingAvatarsSwitch) {
         [NSUserDefaults saveIncomingAvatarSetting:sender.on];
     }
@@ -62,7 +66,8 @@
         [NSUserDefaults saveOutgoingAvatarSetting:sender.on];
     }
     else if (sender == self.springySwitch) {
-        [NSUserDefaults saveSpringinessSetting:sender.on];
+        //[NSUserDefaults saveSpringinessSetting:sender.on];
+        [NSUserDefaults saveAccessoryButtonForMediaMessages:sender.on];
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];

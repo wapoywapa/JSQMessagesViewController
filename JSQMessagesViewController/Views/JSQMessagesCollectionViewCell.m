@@ -64,6 +64,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 @property (weak, nonatomic, readwrite) UITapGestureRecognizer *tapGestureRecognizer;
 
+
 - (void)jsq_handleTapGesture:(UITapGestureRecognizer *)tap;
 
 - (void)jsq_updateConstraint:(NSLayoutConstraint *)constraint withConstant:(CGFloat)constant;
@@ -130,6 +131,15 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.cellBottomLabel.textColor = [UIColor lightGrayColor];
 
     [self configureAccessoryButton];
+    
+    //this stops the copy/paste bug on ios 11 from stopping the tap gesture working on the text
+    //and we need it to work on certain types of bubble (i.e. SEND PRIVATE PHOTOS)
+    //this is an ugly hack
+    self.tapFixOverlayView = [[UIView alloc] init];
+    self.tapFixOverlayView.backgroundColor = UIColor.redColor;
+    [self.tapFixOverlayView setFrame:CGRectMake(0, 0, self.textView.contentSize.width, self.textView.contentSize.height)];
+    [self.textView addSubview:self.tapFixOverlayView];
+    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleTapGesture:)];
     [self addGestureRecognizer:tap];

@@ -81,6 +81,9 @@
  */
 - (NSUInteger)messageHash;
 
+
+- (BOOL)isButton;
+
 @optional
 
 /**
