@@ -68,7 +68,7 @@
  *  If is a button, then we put an invisble overlay over the message text, this is because of weird behaviour
  *  in iOS 11 which seems to stop on tap gesture working, perhaps due to copy and paste conflict with text below
  */
-@property (assign, nonatomic) BOOL isButton;
+@property (assign, nonatomic, readonly) BOOL isButton;
 
 #pragma mark - Initialization
 

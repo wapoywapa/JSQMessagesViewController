@@ -86,6 +86,7 @@
         _senderDisplayName = [senderDisplayName copy];
         _date = [date copy];
         _isMediaMessage = isMedia;
+        _isButton = false;
     }
     return self;
 }
@@ -95,10 +96,6 @@
     return self.hash;
 }
 
-- (BOOL)isButton {
-    
-    return self.isButton;
-}
 
 
 #pragma mark - NSObject

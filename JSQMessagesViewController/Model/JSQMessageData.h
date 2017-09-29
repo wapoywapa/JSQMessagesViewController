@@ -83,6 +83,13 @@
 - (NSUInteger)messageHash;
 
 
+
+/**
+ *  @return Return true if a button
+ *
+ *  @discussion If a button, then we place an invisible overlay over the bubble text
+ *  so that the tap gesture will work (conflict in iOS 11 with copy and paste)
+ */
 - (BOOL)isButton;
 
 @optional
