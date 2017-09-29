@@ -99,11 +99,12 @@
      *  You should have a mutable array or orderedSet, or something.
      */
     self.messages = [[NSMutableArray alloc] initWithObjects:
-                     [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdSquires
-                                        senderDisplayName:kJSQDemoAvatarDisplayNameSquires
-                                                     date:[NSDate distantPast]
-                                                     text:@"Welcome to JSQMessages: A messaging UI framework for iOS."],
-                     
+                     [[JSQAttributedMessage alloc] initWithSenderId:kJSQDemoAvatarIdSquires
+                                                  senderDisplayName:kJSQDemoAvatarDisplayNameSquires
+                                                               date:[NSDate distantPast]
+                                                     attributedText:[[NSMutableAttributedString alloc] initWithString:@"BLAH BLAH"]
+                                                           isButton: NO],
+                      
                      [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdWoz
                                         senderDisplayName:kJSQDemoAvatarDisplayNameWoz
                                                      date:[NSDate distantPast]

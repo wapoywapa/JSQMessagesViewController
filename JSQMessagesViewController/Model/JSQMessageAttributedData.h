@@ -27,4 +27,6 @@
  */
 - (NSAttributedString *)attributedText;
 
+- (BOOL)isButton;
+
 @end

@@ -569,18 +569,21 @@ JSQMessagesKeyboardControllerDelegate>
         if ([messageItem conformsToProtocol:@protocol(JSQMessageAttributedData)]) {
             id <JSQMessageAttributedData> attributedMessageItem =  (id <JSQMessageAttributedData>) messageItem;
             cell.textView.attributedText = [attributedMessageItem attributedText];
-            
-        } else {
 
-            if (messageItem.isButton)
+            if (attributedMessageItem.isButton)
             {
+                NSLog(@"WAPX: IS A BUTTON");
                 cell.tapFixOverlayView.hidden = NO;
             }
             else
             {
+                NSLog(@"WAPX: IS NOT A BUTTON");
                 cell.tapFixOverlayView.hidden = YES;
             }
+            
+        } else {
 
+            cell.tapFixOverlayView.hidden = YES;
             cell.textView.text = [messageItem text];
             
             if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {

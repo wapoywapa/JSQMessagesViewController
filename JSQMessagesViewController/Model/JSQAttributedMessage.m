@@ -47,6 +47,26 @@
     self = [super initWithSenderId:senderId senderDisplayName:senderDisplayName date:date text:attributedText.string];
     if (self) {
         _attributedText = [attributedText copy];
+        _isButton = NO;
+    }
+    return self;
+}
+
+
+- (instancetype)initWithSenderId:(NSString *)senderId
+               senderDisplayName:(NSString *)senderDisplayName
+                            date:(NSDate *)date
+                  attributedText:(NSAttributedString *)attributedText
+                        isButton:(BOOL)isButton {
+    
+    NSParameterAssert(senderId != nil);
+    NSParameterAssert(senderDisplayName != nil);
+    NSParameterAssert(date != nil);
+    
+    self = [super initWithSenderId:senderId senderDisplayName:senderDisplayName date:date text:attributedText.string];
+    if (self) {
+        _attributedText = [attributedText copy];
+        _isButton = isButton;
     }
     return self;
 }
