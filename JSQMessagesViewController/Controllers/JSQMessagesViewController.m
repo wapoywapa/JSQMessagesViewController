@@ -572,12 +572,10 @@ JSQMessagesKeyboardControllerDelegate>
 
             if (attributedMessageItem.isButton)
             {
-                NSLog(@"WAPX: IS A BUTTON");
                 cell.tapFixOverlayView.hidden = NO;
             }
             else
             {
-                NSLog(@"WAPX: IS NOT A BUTTON");
                 cell.tapFixOverlayView.hidden = YES;
             }
             
@@ -740,8 +738,17 @@ JSQMessagesKeyboardControllerDelegate>
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
 {
     if (action == @selector(copy:)) {
-        id<JSQMessageData> messageData = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
-        [[UIPasteboard generalPasteboard] setString:[messageData text]];
+        
+        if ([[collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath] conformsToProtocol:@protocol(JSQMessageAttributedData)])
+        {
+            id<JSQMessageAttributedData> messageData = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
+            [[UIPasteboard generalPasteboard] setString:messageData.attributedText.string];
+        }
+        else
+        {
+            id<JSQMessageData> messageData = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
+            [[UIPasteboard generalPasteboard] setString:[messageData text]];
+        }
     }
     else if (action == @selector(delete:)) {
         [collectionView.dataSource collectionView:collectionView didDeleteMessageAtIndexPath:indexPath];
