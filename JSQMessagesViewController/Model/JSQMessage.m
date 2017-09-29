@@ -96,7 +96,8 @@
 }
 
 - (BOOL)isButton {
-    return YES;
+    
+    return self.isButton;
 }
 
 

@@ -136,7 +136,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     //and we need it to work on certain types of bubble (i.e. SEND PRIVATE PHOTOS)
     //this is an ugly hack
     self.tapFixOverlayView = [[UIView alloc] init];
-    //self.tapFixOverlayView.backgroundColor = UIColor.redColor;
+    self.tapFixOverlayView.backgroundColor = UIColor.redColor;
+    self.tapFixOverlayView.alpha = 0.2;
     [self.tapFixOverlayView setFrame:CGRectMake(0, 0, self.textView.contentSize.width, self.textView.contentSize.height)];
     [self.textView addSubview:self.tapFixOverlayView];
     
