@@ -71,6 +71,7 @@
  *  @return A boolean value specifying whether or not this is a media message or a text message.
  *  Return `YES` if this item is a media message, and `NO` if it is a text message.
  */
+
 - (BOOL)isMediaMessage;
 
 /**
