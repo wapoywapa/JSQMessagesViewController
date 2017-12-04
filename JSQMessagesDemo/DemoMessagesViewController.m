@@ -40,7 +40,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"JSQMessages";
+    self.title = @"JSQMessagesX";
     
     /**
      *  You MUST set your senderId and display name
@@ -60,6 +60,10 @@
      *  Set up message accessory button delegate and configuration
      */
     self.collectionView.accessoryDelegate = self;
+    
+    self.view.backgroundColor = [UIColor blackColor];
+    self.collectionView.backgroundColor = [UIColor blackColor];
+    self.inputToolbar.barTintColor = [UIColor blackColor];
     
     
     /**
