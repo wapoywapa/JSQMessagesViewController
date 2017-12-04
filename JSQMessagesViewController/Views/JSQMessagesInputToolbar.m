@@ -82,6 +82,13 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
     [self jsq_removeObservers];
 }
 
+-(void) didMoveToWindow{
+    [super didMoveToWindow];
+    if (@available(iOS 11.0, *)) {
+        [[self bottomAnchor] constraintLessThanOrEqualToSystemSpacingBelowAnchor:self.window.safeAreaLayoutGuide.bottomAnchor multiplier:1.0].active = YES;
+    }
+}
+
 #pragma mark - Setters
 
 - (void)setPreferredDefaultHeight:(CGFloat)preferredDefaultHeight
