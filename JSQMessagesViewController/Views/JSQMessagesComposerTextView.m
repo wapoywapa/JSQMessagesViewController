@@ -142,18 +142,20 @@
 
 - (void)paste:(id)sender
 {
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 11) {
-     
-        if (!self.pasteDelegate || [self.pasteDelegate composerTextView:self shouldPasteWithSender:sender]) {
-            [super paste:sender];
-        }
-    }
-    else
+    //HACK: paste was crashing on iOS 10, and since this library is dead, just doing a quick hack to get working
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 11)
     {
         UIPasteboard* pasteboard = [UIPasteboard generalPasteboard];
         NSString* rawString = pasteboard.string;
-        
-        NSLog(@"WAPX: PASTED STRING!!!! %@", rawString);
+
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:rawString forKey:@"userInfo"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"WapxPasteEvent" object:nil userInfo:userInfo];
+    }
+    else
+    {
+        if (!self.pasteDelegate || [self.pasteDelegate composerTextView:self shouldPasteWithSender:sender]) {
+            [super paste:sender];
+        }
     }
 }
 
