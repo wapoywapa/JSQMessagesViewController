@@ -142,8 +142,18 @@
 
 - (void)paste:(id)sender
 {
-    if (!self.pasteDelegate || [self.pasteDelegate composerTextView:self shouldPasteWithSender:sender]) {
-        [super paste:sender];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 11) {
+     
+        if (!self.pasteDelegate || [self.pasteDelegate composerTextView:self shouldPasteWithSender:sender]) {
+            [super paste:sender];
+        }
+    }
+    else
+    {
+        UIPasteboard* pasteboard = [UIPasteboard generalPasteboard];
+        NSString* rawString = pasteboard.string;
+        
+        NSLog(@"WAPX: PASTED STRING!!!! %@", rawString);
     }
 }
 
