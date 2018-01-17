@@ -660,12 +660,13 @@ JSQMessagesKeyboardControllerDelegate>
     const BOOL isMediaMessage = [messageItem isMediaMessage];
     cell.isAccessibilityElement = YES;
     if (!isMediaMessage) {
+        
         //cell.accessibilityLabel = [NSString stringWithFormat:[NSBundle jsq_localizedStringForKey:@"text_message_accessibility_label"],
         //                           [messageItem senderDisplayName],
         //                           [messageItem text]];
         
-        NSLog(@"cell.accessibilityLabel: %@", cell.accessibilityLabel);
 
+        //for some reason, the localized string in italian (and maybe others) seems to come in wrong, which means the parameters aren't read out, hardcoding does the trick
         cell.accessibilityLabel = [NSString stringWithFormat:[NSBundle jsq_localizedStringForKey:@"%@: %@"],
                                    [messageItem senderDisplayName],
                                    [messageItem text]];
