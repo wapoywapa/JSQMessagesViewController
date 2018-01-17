@@ -660,7 +660,13 @@ JSQMessagesKeyboardControllerDelegate>
     const BOOL isMediaMessage = [messageItem isMediaMessage];
     cell.isAccessibilityElement = YES;
     if (!isMediaMessage) {
-        cell.accessibilityLabel = [NSString stringWithFormat:[NSBundle jsq_localizedStringForKey:@"text_message_accessibility_label"],
+        //cell.accessibilityLabel = [NSString stringWithFormat:[NSBundle jsq_localizedStringForKey:@"text_message_accessibility_label"],
+        //                           [messageItem senderDisplayName],
+        //                           [messageItem text]];
+        
+        NSLog(@"cell.accessibilityLabel: %@", cell.accessibilityLabel);
+
+        cell.accessibilityLabel = [NSString stringWithFormat:[NSBundle jsq_localizedStringForKey:@"%@: %@"],
                                    [messageItem senderDisplayName],
                                    [messageItem text]];
     }
